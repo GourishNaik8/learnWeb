@@ -1,19 +1,32 @@
-import React from 'react'
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "../components/Header/Header";
 
 const Layout = ({ children }) => {
-    return (
-      <div className="layout">
-        <header>
-        Headder
-        </header>
+  return (
+    <div className="layout">
+      <Router>
+        <Header />
+
         <main>
-          {children}
+          {children ? (
+            children
+          ) : (
+            <Switch>
+              <Route path="/inspace">
+                <InspacePage />
+              </Route>
+              <Route path="/createspace">
+                <CreatSpacePage />
+              </Route>
+            </Switch>
+          )}
         </main>
-        <footer>
-          
-        </footer>
-      </div>
-    );
-  };
-  
-  export default Layout;
+        
+      </Router>
+      <footer></footer>
+    </div>
+  );
+};
+
+export default Layout;
